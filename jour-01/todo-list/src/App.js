@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
+import TodoItem from './TodoItem';
 
 function App() {
     // ici on va créer des etats pour stocker toutes les tâches
@@ -44,12 +45,11 @@ function App() {
         {/* Affichage de toutes les tâches  */}
         <ul>
           {todos.map((todo,index) => (
-            <li key={index}> 
-            {todo}
-            <button onClick={() => handlerDeleteTodo(index)} style={{marginLeft:'10px',color:'red'}}>
-            supprimer
-            </button>
-            </li>
+            <TodoItem 
+              key = {index}
+              task = {todo}
+              onDelete={()=> handlerDeleteTodo(index)}
+            />
           ))}
         </ul>
     </div>
