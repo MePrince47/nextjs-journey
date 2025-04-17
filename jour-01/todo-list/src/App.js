@@ -6,7 +6,7 @@ function App() {
     const [todos, seTodos]= useState([]);
     
     // ici on stocker les utilisateurs 
-    const [newTodo, setTodos] = useState('');
+    const [newTodo, setNewTodos] = useState('');
     
     //fonction qui ajoute une nouvelle tâche à la liste
     const handlerAddTodo = () => {
@@ -19,10 +19,15 @@ function App() {
       seTodos([...todos, newTodo]);
 
       // Reinitialisation du champs de texte 
-      setTodos('');
+      setNewTodos('');
       
     }
 
+    // Suppression de la tâche via son index 
+    const handlerDeleteTodo =(indexToDelete) =>{
+      const updateTodos = todos.filter((_, index) => index !== indexToDelete);
+      seTodos(updateTodos);
+    };
 
   return (
     <div className="App">
@@ -31,7 +36,7 @@ function App() {
       <input type='text'
       placeholder='Ajouter une tâche...'
       value={newTodo}
-      onChange={(e)=> setTodos(e.target.value)} //met à jour l'état 
+      onChange={(e)=> setNewTodos(e.target.value)} //met à jour l'état 
       />
 
         {/* Bouton poue ajouter une tâche   */}
@@ -39,7 +44,12 @@ function App() {
         {/* Affichage de toutes les tâches  */}
         <ul>
           {todos.map((todo,index) => (
-            <li key={index}> {todo}</li>
+            <li key={index}> 
+            {todo}
+            <button onClick={() => handlerDeleteTodo(index)} style={{marginLeft:'10px',color:'red'}}>
+            supprimer
+            </button>
+            </li>
           ))}
         </ul>
     </div>
