@@ -1,0 +1,49 @@
+import React, {useState} from 'react';
+import './App.css';
+
+function App() {
+    // ici on va créer des etats pour stocker toutes les tâches
+    const [todos, seTodos]= useState([]);
+    
+    // ici on stocker les utilisateurs 
+    const [newTodo, setTodos] = useState('');
+    
+    //fonction qui ajoute une nouvelle tâche à la liste
+    const handlerAddTodo = () => {
+
+      // si entrée vide - on ne fait rien 
+
+      if (newTodo.trim() === '')return;
+
+      // ajoute la nouvelle tâche à la liste existante 
+      seTodos([...todos, newTodo]);
+
+      // Reinitialisation du champs de texte 
+      setTodos('');
+      
+    }
+
+
+  return (
+    <div className="App">
+      <h1> Ma To-do List </h1>
+      {/*  Champ de saisie pour écrire une tâche */}
+      <input type='text'
+      placeholder='Ajouter une tâche...'
+      value={newTodo}
+      onChange={(e)=> setTodos(e.target.value)} //met à jour l'état 
+      />
+
+        {/* Bouton poue ajouter une tâche   */}
+        <button onClick={handlerAddTodo}>Ajouter</button>
+        {/* Affichage de toutes les tâches  */}
+        <ul>
+          {todos.map((todo,index) => (
+            <li key={index}> {todo}</li>
+          ))}
+        </ul>
+    </div>
+  );
+}
+
+export default App;
