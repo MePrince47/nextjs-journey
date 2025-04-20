@@ -26,3 +26,5 @@ return (
     </form>
 );
 }
+
+export default InscriptionForm
