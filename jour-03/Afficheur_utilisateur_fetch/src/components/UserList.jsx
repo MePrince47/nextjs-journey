@@ -5,7 +5,7 @@ export default function UserList(){
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-
+// Composant créé 
 useEffect(()=> {
     fetch('https://jsonplaceholder.typicode.com/users') //Mon API
     .then(res => {
